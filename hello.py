@@ -16,19 +16,14 @@ def ac_connect(dom):
   dom.focus("Input")
  
 def ac_submit(dom):
-  global name
   name = dom.get_value("Input")
+  dom.begin("Output", f"<div>Hello, {name}!</div>")
   dom.set_value("Input", "")
   dom.focus("Input")
-  atlastk.broadcast_action("Refresh")
-
-def ac_refresh(dom):
-  dom.begin("Output", f"<div>Hello, {name}!</div>")
  
 CALLBACKS = {
   "": ac_connect,
-  "Submit": ac_submit,
-  "Refresh": ac_refresh
+  "Submit": ac_submit
 }
  
 atlastk.launch(CALLBACKS)
